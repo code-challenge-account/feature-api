@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  base: &base
+    image: maven:3.6.3-openjdk-15-slim
+    working_dir: /app
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - maven_cache:/root/.m2
+
+  app:
+    <<: *base
+    ports:
+      - 8085:8085
+      - 5010:5010
+    command: mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:5010"
+
+  tests:
+    <<: *base
+    command: mvn test
+
+volumes:
+  maven_cache: {}
+
+networks:
+  default:
+    external:
+      name: rakan
