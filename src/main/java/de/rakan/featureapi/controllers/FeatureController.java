@@ -1,5 +1,6 @@
 package de.rakan.featureapi.controllers;
 
+import de.rakan.featureapi.models.Feature;
 import de.rakan.featureapi.models.FeatureDto;
 import de.rakan.featureapi.repositories.FeatureCache;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -38,5 +40,12 @@ public class FeatureController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Feature Id " + id));
     }
 
+    @GetMapping(value = "/features/{id}/quicklook", produces = MediaType.IMAGE_PNG_VALUE)
+    public @ResponseBody byte[] getFeatureImage(@PathVariable String id) {
+        return featureCache
+                .findById(id)
+                .map(Feature::getImage)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Feature Id " + id));
+    }
 
 }
