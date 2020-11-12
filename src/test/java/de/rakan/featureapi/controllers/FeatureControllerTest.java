@@ -5,7 +5,6 @@ import de.rakan.featureapi.models.Feature;
 import de.rakan.featureapi.models.dtos.FeatureDto;
 import de.rakan.featureapi.repositories.FeatureCache;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +24,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
-
 @SpringBootTest
 @AutoConfigureMockMvc
 class FeatureControllerTest {
@@ -38,11 +35,6 @@ class FeatureControllerTest {
     private FeatureCache featureCacheMock;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-
-
-    @BeforeEach
-    void setUp() {
-    }
 
     @Test
     void getFeatureById_shouldReturnCorrectResponseWhenTheFeatureIdExistsInTheCache() throws Exception {
