@@ -1,7 +1,7 @@
 package de.rakan.featureapi.controllers;
 
 import de.rakan.featureapi.models.Feature;
-import de.rakan.featureapi.models.FeatureDto;
+import de.rakan.featureapi.models.dtos.FeatureDto;
 import de.rakan.featureapi.repositories.FeatureCache;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

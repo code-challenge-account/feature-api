@@ -1,5 +1,6 @@
-package de.rakan.featureapi.models;
+package de.rakan.featureapi.models.dtos;
 
+import de.rakan.featureapi.models.Feature;
 import lombok.Builder;
 import lombok.Value;
 
