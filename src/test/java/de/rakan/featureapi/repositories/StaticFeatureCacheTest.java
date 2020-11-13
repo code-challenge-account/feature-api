@@ -36,6 +36,7 @@ class StaticFeatureCacheTest {
 
         Optional<Feature> result = featureCache.findById(featureId);
         assertTrue(result.isPresent());
+        // potentially one should assert each field of course ...
         assertEquals(expectedFeature.toString(), result.get().toString());
     }
 
